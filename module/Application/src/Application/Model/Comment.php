@@ -62,6 +62,49 @@ class Comment extends Entity{
                 )),
             )));
             
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'name',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StripTags'),
+                ),
+                'validators' => array(array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 100,
+                    ),
+                )),
+            )));
+           
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'webpage',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StripTags'),
+                ),
+                'validators' => array(array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 200,
+                    ),
+                )),
+            )));
+            
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'comment_date',
+                'required' => false,
+                'filters' => array(
+                    array('name' => 'StringTrim'),
+                    array('name' => 'StripTags'),
+                ),
+            )));
+            
             $this->inputFilter = $inputFilter;
         }
         

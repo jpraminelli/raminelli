@@ -1,23 +1,27 @@
 <?php
 namespace Application\Model;
-//use Zend\InputFilter\Factory as inputFactory;
+
+use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilter;
-//use Zend\InputFilter\InputFilterAwareInterface;
-//use Zend\InputFilter\InputFilterInterface;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
 use Core\Model\Entity;
 
-class Post extends Entity{
-    protected $tableName = 'posts';
+class Comment extends Entity{
+    
+    protected $tableName = 'comments';
     protected $id;
-    protected $title;
+    protected $post_id;
     protected $description;
-    protected $post_date;
+    protected $name;
+    protected $email;
+    protected $webpage;
+    protected $comment_date;
     
     public function getInputFilter() {
-        
         parent::getInputFilter();
         
-        if(!$this->inputFilter){
+          if(!$this->inputFilter){
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
             
@@ -30,20 +34,11 @@ class Post extends Entity{
             )));
             
             $inputFilter->add($factory->createInput(array(
-                'name' => 'title',
+                'name' => 'post_id',
                 'required' => true,
                 'filters' => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
+                    array('name' => 'Int'),
                 ),
-                'validators' => array(array(
-                    'name' => 'StringLength',
-                    'options' => array(
-                        'encoding' => 'UTF-8',
-                        'min' => 1,
-                        'max' => 100,
-                    ),
-                )),
             )));
             
             $inputFilter->add($factory->createInput(array(
@@ -56,12 +51,15 @@ class Post extends Entity{
             )));
             
             $inputFilter->add($factory->createInput(array(
-                'name' => 'post_date',
-                'required' => false,
+                'name' => 'email',
+                'required' => true,
                 'filters' => array(
                     array('name' => 'StringTrim'),
                     array('name' => 'StripTags'),
                 ),
+                'validators' => array(array(
+                    'name' => 'EmailAddress',
+                )),
             )));
             
             $this->inputFilter = $inputFilter;

@@ -1,6 +1,6 @@
 <?php
 namespace Application\Model;
-//use Zend\InputFilter\Factory as inputFactory;
+use Zend\InputFilter\Factory as inputFactory;
 use Zend\InputFilter\InputFilter;
 //use Zend\InputFilter\InputFilterAwareInterface;
 //use Zend\InputFilter\InputFilterInterface;

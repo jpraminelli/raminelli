@@ -21,7 +21,7 @@
             <td><?php echo $post['title'];?></td>
             <td><?php echo $post['description'];?></td>
             <td class="center">
-                <?php echo $post['post_date']; ?>
+                <?php echo $this->formatarData($post['post_date']); ?>
             </td>
             <td class="center">
                 <a href="/admin/index/save/id/<?php echo $post['id'];?>" title="Editar" class="btn"><i class="icon-edit"></i></a>

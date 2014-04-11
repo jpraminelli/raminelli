@@ -34,6 +34,16 @@ class Module
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
+            
         );
     }
+    public function getViewHelperConfig() {
+        return array(
+            'invokables' => array(
+                'formatarData' => new View\Helper\FormatarData
+                
+            ),
+        );
+    }
+
 }

@@ -1,49 +1,33 @@
-<div class="hero-unit">
-    <h1><?php echo sprintf($this->translate('Welcome to %sZend Framework 2%s'), '<span class="zf-green">', '</span>') ?></h1>
-    <p><a class="btn btn-success btn-large" href="/admin/index/save">Criar Post</a></p>
-    <div class="row">
-        <div class="span12">
-            <span class="divisor">Lista de Posts </span>
-        </div>
+<div class="actions clearfix">
+    <div class="btns">
+        <a class="btn submit" href="/admin/index/save" title="Criar Post">Novo Post</a>
     </div>
-    <div class="row">
-        <div class="span12">
-            <table class="datatable">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Texto</th>
-                        <th width="130" class="center">Data de Cadastro</th>
-                        <th width="120" class="center">Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($posts as $post): ?>
-                        <tr>
-                            <td><?php echo $this->escapeHtml($post['title']); ?></td>
-                            <td><?php echo $this->escapeHtml($post['description']); ?></td>
-                            <td class="center">
-                                <?php
-                                echo $post['post_date'];
-                                ?>
-                            </td>
-                            <td class="center">
-                                <a href="/admin/index/save/id/<?php echo $post['id']; ?>"
-                                   title="Editar" class="btn">
-                                    <i class="icon-edit"></i>
-                                </a>
-                                <a href="/admin/index/delete/id/<?php echo $post['id']; ?>"
-                                   rel="confirmation"
-                                   title="Deseja excluir este registro?"
-                                   class="btn">
-                                    <i class="icon-remove"></i>
-                                </a>
-                            </td>
-                        </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
 </div>
+<label class="divisor">
+    <span>Lista de Posts</span>
+</label>
+<table class="datatable">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Texto</th>
+            <th width="130" class="center">Data de Cadastro</th>
+            <th width="120" class="center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($posts as $post) { ?>
+        <tr>
+            <td><?php echo $post['title'];?></td>
+            <td><?php echo $post['description'];?></td>
+            <td class="center">
+                <?php echo $post['post_date']; ?>
+            </td>
+            <td class="center">
+                <a href="/admin/index/save/id/<?php echo $post['id'];?>" title="Editar" class="btn"><i class="icon-edit"></i></a>
+                <a href="/admin/index/delete/id/<?php echo $post['id'];?>" rel="confirmation" title="Deseja excluir este registro" class="btn"><i class="icon-remove"></i></a>
+            </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>

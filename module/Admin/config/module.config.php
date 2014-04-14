@@ -4,11 +4,23 @@ return array(
     'controllers' => array( //add module controllers
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Admin\Controller\Auth' => 'Admin\Controller\AuthController',
         ),
     ),
 
     'router' => array(
         'routes' => array(
+            'admin/auth' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/admin/auth',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Auth',
+                        'action'     => 'index',
+                        'module'     => 'admin',
+                    ),
+                ),
+            ),
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -58,5 +70,16 @@ return array(
         'driver_options' => array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         )
-    )
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Session' => function($sm){
+                return new Zend\Session\Container('ZF2napratica');
+            },
+            'Admin\Service\Auth' => function($sm){
+                $dbAdapter = $sm->get('DbAdapter');
+                return new Admin\Service\Auth($dbAdapter);
+            }        
+        ),
+    ),
 );

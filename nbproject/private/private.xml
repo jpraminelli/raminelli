@@ -3,26 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/var/www/html/raminelli/module/Application/src/Application/View/Helper/FormatarData.php</file>
-            <file>file:/var/www/html/raminelli/module/Application/Module.php</file>
-            <file>file:/var/www/html/raminelli/module/Application/config/module.config.php</file>
-            <file>file:/var/www/html/raminelli/module/Application/view/application/index/index.phtml</file>
-=======
             <file>file:/var/www/raminelli/module/Admin/src/Admin/Model/User.php</file>
             <file>file:/var/www/raminelli/module/Admin/src/Admin/Controller/AuthController.php</file>
             <file>file:/var/www/raminelli/module/Admin/config/module.config.php</file>
             <file>file:/var/www/raminelli/module/Application/config/module.config.php</file>
+            <file>file:/var/www/raminelli/module/Admin/src/Admin/Controller/IndexController.php</file>
             <file>file:/var/www/raminelli/module/Admin/view/admin/auth/index.phtml</file>
             <file>file:/var/www/raminelli/module/Application/src/Application/Controller/IndexController.php</file>
             <file>file:/var/www/raminelli/module/Admin/Module.php</file>
             <file>file:/var/www/raminelli/module/Application/view/partials/paginator/control.phtml</file>
             <file>file:/var/www/raminelli/module/Admin/src/Admin/Form/Login.php</file>
             <file>file:/var/www/raminelli/module/Application/view/layout/layout.phtml</file>
+            <file>file:/var/www/raminelli/module/Admin/view/admin/index/save.phtml</file>
             <file>file:/var/www/raminelli/config/application.config.php</file>
             <file>file:/var/www/raminelli/module/Application/view/application/index/index.phtml</file>
             <file>file:/var/www/raminelli/module/Admin/src/Admin/Service/Auth.php</file>
->>>>>>> 5205120541497c545c166113abef6b85d5cdaac9
+            <file>file:/var/www/raminelli/module/Application/src/Application/Form/Post.php</file>
         </group>
     </open-files>
 </project-private>

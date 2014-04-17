@@ -10,17 +10,6 @@ return array(
 
     'router' => array(
         'routes' => array(
-            'admin/auth' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route'    => '/admin/auth',
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Auth',
-                        'action'     => 'index',
-                        'module'     => 'admin',
-                    ),
-                ),
-            ),
             'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(

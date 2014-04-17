@@ -5,49 +5,51 @@ namespace Application\Form;
 use Zend\Form\Form;
 
 class Post extends Form {
-    
+
     public function __construct() {
         parent::__construct('post');
-        
+
         $this->setAttribute('method', 'post');
         $this->setAttribute('action', '/admin/index/save');
-        
+
         $this->add(array(
             'name' => 'id',
             'attibutes' => array(
-                'type' => 'hidden'
-            ),
-        ));
-        
+                'attributes' => array(
+                    'type' => 'hidden'
+                ),
+            ))
+        );
+
         $this->add(array(
             'name' => 'title',
             'attibutes' => array(
-                'type' => 'text'
-            ),
-            'options' => array(
-                'label' => 'Título'
-            ),
-        ));
+                'attributes' => array(
+                    'type' => 'text'
+                ),
+                'options' => array(
+                    'label' => 'Título'
+                ),
+        )));
 
         $this->add(array(
-            'name' => 'description',
-            'attibutes' => array(
+            'name' => 'descripion',
+            'attributes' => array(
                 'type' => 'textarea'
             ),
             'options' => array(
                 'label' => 'Texto do post'
             ),
         ));
-        
+
         $this->add(array(
             'name' => 'submit',
-            'attibutes' => array(
+            'attributes' => array(
                 'type' => 'submit',
                 'value' => 'Enviar',
-                'id' => 'submitbutton',
+                'id' => 'submitbutton'
             ),
         ));
-        
-        
     }
+
 }

@@ -21,6 +21,17 @@ return array(
                     ),
                 ),
             ),
+            'admin/auth/index' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => 'admin/auth/index',
+                    'defaults' => array(
+                        'controller' => 'Admin\Controller\Auth',
+                        'action'     => 'index',
+                        'module'     => 'admin',
+                    ),
+                ),
+            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(

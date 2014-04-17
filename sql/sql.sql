@@ -97,3 +97,60 @@ ALTER TABLE `comments`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+
+
+/* usuarios */
+
+
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Máquina: localhost
+-- Data de Criação: 17-Abr-2014 às 16:55
+-- Versão do servidor: 5.5.35-1ubuntu1
+-- versão do PHP: 5.5.9-1ubuntu4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de Dados: `raminelli`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `valid` tinyint(4) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `valid`, `role`) VALUES
+(2, 'raminelli', 'e10adc3949ba59abbe56e057f20f883e', 'João Paulo Raminelli', 1, 'admin'),
+(3, 'steve', '698dc19d489c4e4db73e28a713eab07b', 'Steve Jobs', 1, 'redator'),
+(4, 'bill', '698dc19d489c4e4db73e28a713eab07b', 'Bill Gates', 1, 'visitante');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+

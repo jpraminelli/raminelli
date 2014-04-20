@@ -53,13 +53,13 @@ return array(
             'admin' => __DIR__ . '/../view',
         ),
     ),
-    'db' => array( //module can have a specific db configuration
-        'driver' => 'PDO_SQLite',
-        'dsn' => 'sqlite:' . __DIR__ .'/../data/skel.db',
-        'driver_options' => array(
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        )
-    ),
+//    'db' => array( //module can have a specific db configuration
+//        'driver' => 'PDO_SQLite',
+//        'dsn' => 'sqlite:' . __DIR__ .'/../data/skel.db',
+//        'driver_options' => array(
+//            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+//        )
+//    ),
     'service_manager' => array(
         'factories' => array(
             'Session' => function($sm){

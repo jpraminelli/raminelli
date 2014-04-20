@@ -16,7 +16,10 @@ class Auth extends Service {
     }
 
     public function authenticate($params) {
-        if (!isset($params['username']) || !isset($params['password'])) {
+        if (
+                (isset($params['username']) && $params['username'] == '' )  || 
+                (isset($params['password']) && $params['password'] == '')
+            ){
             //todo parametros invalidos
             die('parametros necessarios');
         }
@@ -24,7 +27,6 @@ class Auth extends Service {
         $senha = md5($params['password']);
         $auth = new AuthenticationService();
         $authAdapter = new AuthAdapter($this->dbAdapter);
-
         $authAdapter->setTableName('users')
                 ->setIdentityColumn('username')
                 ->setCredentialColumn('password')

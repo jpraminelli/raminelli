@@ -1,36 +1,19 @@
-<div class="actions clearfix">
-    <div class="btns">
-        <a class="btn submit" href="<?php echo $this->basePath();?>/admin/index/save" title="Criar Post">Novo Post</a>
-    </div>
-</div>
-<label class="divisor">
-    <span>Lista de Posts</span>
-</label>
-<table class="datatable">
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Texto</th>
-            <th width="130" class="center">Data de Cadastro</th>
-            <th width="120" class="center">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($posts as $post) { ?>
-        <tr>
-            <td><?php echo $post['title'];?></td>
-            <td><?php echo $post['description'];?></td>
-            <td class="center">
-                <?php echo $this->formatarData($post['post_date']); ?>
-            </td>
-            <td class="center">
-                <a href="<?php echo WWWROOT;?>admin/index/save/id/<?php echo $post['id'];?>" title="Editar" class="btn"><i class="icon-edit"></i></a>
-                <a href="<?php echo WWWROOT;?>admin/index/delete/id/<?php echo $post['id'];?>" rel="confirmation" title="Deseja excluir este registro" class="btn"><i class="icon-remove"></i></a>
-            </td>
-        </tr>
-        <?php } ?>
-    </tbody>
-</table>
 <div class="row">
-    <?php echo $this->paginationControl($posts, 'Sliding', 'partials/paginator/control.phtml'); ?>
+    <?php foreach ($posts as $post) { ?>
+        <div class="span8">
+            <blockquote>
+                <h3><span class="zf-green" ><?php echo $post['title']; ?></span></h3>
+                <small><?php echo $this->formatarData($post['post_date']); ?></small>
+            </blockquote>
+        </div>
+        <div class="span8">
+            <p> <span class="center"> <?php echo substr($post['description'], 0, 500); ?> [..] </span><a href="#" class="btn-link">mais</a></p>
+        </div>
+    <?php } ?>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <?php echo $this->paginationControl($posts, 'Sliding', 'partials/paginator/control.phtml'); ?>
+    </div>
 </div>

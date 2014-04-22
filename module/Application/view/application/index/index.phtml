@@ -24,8 +24,8 @@
                 <?php echo $this->formatarData($post['post_date']); ?>
             </td>
             <td class="center">
-                <a href="<?php echo $this->basePath();?>/admin/index/save/id/<?php echo $post['id'];?>" title="Editar" class="btn"><i class="icon-edit"></i></a>
-                <a href="<?php echo $this->basePath();?>/admin/index/delete/id/<?php echo $post['id'];?>" rel="confirmation" title="Deseja excluir este registro" class="btn"><i class="icon-remove"></i></a>
+                <a href="<?php echo WWWROOT;?>admin/index/save/id/<?php echo $post['id'];?>" title="Editar" class="btn"><i class="icon-edit"></i></a>
+                <a href="<?php echo WWWROOT;?>admin/index/delete/id/<?php echo $post['id'];?>" rel="confirmation" title="Deseja excluir este registro" class="btn"><i class="icon-remove"></i></a>
             </td>
         </tr>
         <?php } ?>

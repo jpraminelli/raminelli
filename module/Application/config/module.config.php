@@ -101,4 +101,11 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'view_helper_config' => array(
+        'flashmessenger' => array(
+            'message_open_format'      => '<div class="alert alert-error">',
+            'message_close_string'     => '</div>',
+        )
+    ),
+
 );

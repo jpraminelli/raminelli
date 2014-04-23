@@ -35,7 +35,8 @@ class AuthController extends ActionController
     {
         $request = $this->getRequest();
         if (!$request->isPost()) {
-            throw new \Exception('Acesso inválido');
+            $this->flashMessenger()->addMessage('Acesso restrito');
+            return $this->redirect()->toUrl(WWWROOT.'admin/auth/index');
         }
 
         $data = $request->getPost();
@@ -47,7 +48,7 @@ class AuthController extends ActionController
         $service = $this->getService('Admin\Service\Auth');
         $auth = $service->authenticate($dados );
         
-        return $this->redirect()->toUrl('/');
+        return $this->redirect()->toUrl(WWWROOT);
     }
 
     /**
@@ -59,6 +60,6 @@ class AuthController extends ActionController
         $service = $this->getService('Admin\Service\Auth');
         $auth = $service->logout();
         
-        return $this->redirect()->toUrl('/');
+        return $this->redirect()->toUrl(WWWROOT);
     }
 }

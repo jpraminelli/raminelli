@@ -5,14 +5,21 @@ namespace Admin\Service;
 use Core\Service\Service;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
-use Zend\Db\Sql\Select;
+use \Zend\View\Helper\FlashMessenger;
+
+
+
 
 class Auth extends Service {
 
     private $dbAdapter;
+    private $_flashMessenger;
+   
 
     public function __construct($dbAdapter = null) {
         $this->dbAdapter = $dbAdapter;
+        $this->_flashMessenger = new FlashMessenger();
+        
     }
 
     public function authenticate($params) {
@@ -21,7 +28,10 @@ class Auth extends Service {
                 (isset($params['password']) && $params['password'] == '')
             ){
             //todo parametros invalidos
-            die('parametros necessarios');
+            $this->_flashMessenger->addMessage('Preencha corretamente o formulário.');
+            header('location: '.WWWROOT.'admin/auth/index');
+            die;
+           
         }
 
         $senha = md5($params['password']);
@@ -35,8 +45,10 @@ class Auth extends Service {
         $result = $auth->authenticate($authAdapter);
 
         if (!$result->isValid()) {
-            //todo usuario invalido
-            die('usuario nao encontrado');
+           //todo parametros invalidos
+            $this->_flashMessenger->addMessage('Usuário não encontrado.');
+            header('location: '.WWWROOT.'admin/auth/index');
+            die;
         }
 
         //autentica o usuario

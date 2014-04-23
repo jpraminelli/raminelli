@@ -2,6 +2,8 @@
 
 namespace Admin;
 
+use \Zend\View\Helper\FlashMessenger;
+
 class Module {
 
     public function getAutoloaderConfig() {
@@ -36,6 +38,8 @@ class Module {
      */
     public function mvcPreDispatch($event)
     {
+        $this->_flashMessenger = new FlashMessenger();
+        
         $di = $event->getTarget()->getServiceLocator();
         $routeMatch = $event->getRouteMatch();
         $moduleName = $routeMatch->getParam('module');
@@ -44,7 +48,10 @@ class Module {
 
         $authService = $di->get('Admin\Service\Auth');
         if (! $authService->authorize($moduleName, $controllerName, $actionName)) {
-            throw new \Exception('Você não tem permissão para acessar este recurso');
+           
+            $this->_flashMessenger->addMessage('Acesso restrito.');
+            header('location: '.WWWROOT.'admin/auth/index');
+            die;
         }
         
         return true;

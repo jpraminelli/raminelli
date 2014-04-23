@@ -16,8 +16,8 @@ return array(
     'acl' => array(
         'roles' => array(
             'visitante' => null,
-            'redator' => 'visitante',
-            'admin' => 'redator'
+           // 'redator' => 'visitante',
+            'admin' => 'visitante'
         ),
         'resources' => array(
             'Application\Controller\Index.index',
@@ -26,6 +26,7 @@ return array(
             'Admin\Controller\Auth.index',
             'Admin\Controller\Auth.login',
             'Admin\Controller\Auth.logout',
+        	'Admin\Controller\Index.index',
         ),
         'privilege' => array(
             'visitante' => array(
@@ -36,14 +37,16 @@ return array(
                     'Admin\Controller\Auth.logout',
                 )
             ),
-            'redator' => array(
-                'allow' => array(
-                    'Admin\Controller\Index.save',
-                )
-            ),
+//             'redator' => array(
+//                 'allow' => array(
+//                     'Admin\Controller\Index.save',
+//                 )
+//             ),
             'admin' => array(
                 'allow' => array(
                     'Admin\Controller\Index.delete',
+                	'Admin\Controller\Index.save',
+                	'Admin\Controller\Index.index',
                 )
             ),
         )

@@ -6,6 +6,8 @@ use Zend\View\Model\ViewModel;
 use Core\Controller\ActionController;
 use Application\Model\Post;
 use Application\Form\Post as PostForm;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\DbSelect as PaginatorDbSelectAdpter;
 
 class IndexController extends ActionController {
 
@@ -44,6 +46,21 @@ class IndexController extends ActionController {
         }
         $this->getTable('Application\Model\Post')->delete($id);
         return $this->redirect()->toUrl(WWWROOT);
+    }
+    
+    public function indexAction(){
+    	
+    	$post = $this->getTable('Application\Model\Post');
+    	$sql = $post->getSql();
+    	$select = $sql->select();
+    	
+    	$paginatorAdapter = new PaginatorDbSelectAdpter($select, $sql);
+    	$paginator = new Paginator($paginatorAdapter);
+    	$paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
+    	
+    	return new ViewModel(array(
+    			'posts' => $paginator
+    	));
     }
 
 }

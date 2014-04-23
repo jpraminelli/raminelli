@@ -21,6 +21,15 @@ class AuthController extends ActionController
      */
     public function indexAction()
     {
+    	$session = $this->getService('Session');
+    	
+    	$user = $session->offsetGet('user');
+    	 
+    	
+    	if ($user): 
+    		return $this->redirect()->toUrl(WWWROOT.'admin/index/');
+    	endif;
+    	
         $form = new Login();
         return new ViewModel(array(
             'form' => $form

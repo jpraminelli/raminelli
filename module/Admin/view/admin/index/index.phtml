@@ -1,0 +1,19 @@
+<div class="row">
+    <?php foreach ($posts as $post) { ?>
+        <div class="span8">
+            <blockquote>
+                <h3><span class="zf-green" ><?php echo $post['title']; ?></span></h3>
+                <small><?php echo $this->formatarData($post['post_date']); ?></small>
+            </blockquote>
+        </div>
+        <div class="span8">
+            <p> <span class="center"> <?php echo substr($post['description'], 0, 500); ?> [..] </span><a href="#" class="btn-link">mais</a></p>
+        </div>
+    <?php } ?>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <?php echo $this->paginationControl($posts, 'Sliding', 'partials/paginator/control.phtml'); ?>
+    </div>
+</div>

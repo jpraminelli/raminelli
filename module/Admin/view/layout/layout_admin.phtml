@@ -34,8 +34,11 @@
                     <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active">
-                                <a href="<?php echo $this->basePath();?>"><?php echo $this->translate('Home') ?></a>
+                            <li>
+                                <?php $user = $this->session()->offsetGet('user'); ?>
+                                <?php if ($user): ?>
+                                    <a href="<?php echo $this->basePath();?>/admin/auth/logout"><?php echo $this->translate('Sair') ?></a>
+                                <?php endif; ?>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->

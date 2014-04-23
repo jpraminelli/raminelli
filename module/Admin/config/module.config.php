@@ -16,7 +16,7 @@ return array(
                     'route'    => '/admin',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'Index',
+                        'controller'    => 'Admin\Controller\Auth',
                         'action'        => 'index',
                         'module'        => 'admin'
                     ),
@@ -43,11 +43,44 @@ return array(
                     
                 ),
             ),
+        	'admin/index' => array(
+        				'type'    => 'Literal',
+        				'options' => array(
+        						'route'    => '/admin/index',
+        						'defaults' => array(
+        								'__NAMESPACE__' => 'Admin\Controller',
+        								'controller'    => 'Admin\Controller\Index',
+        								'action'        => 'index',
+        								'module'        => 'admin'
+        						),
+        				),
+        				'may_terminate' => true,
+        				'child_routes' => array(
+        						'default' => array(
+        								'type'    => 'Segment',
+        								'options' => array(
+        										'route'    => '/[:controller[/:action]]',
+        										'constraints' => array(
+        												'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+        												'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+        										),
+        										'defaults' => array(
+        										),
+        								),
+        								'child_routes' => array( //permite mandar dados pela url
+        										'wildcard' => array(
+        												'type' => 'Wildcard'
+        										),
+        								),
+        						),
+        		
+        				),
+        	),
         ),
     ),
-//    'module_layout' => array(
-//        'Admin' => 'layout/layout_skel.phtml'
-//    ),
+   'module_layout' => array(
+       'Admin' => 'layout/layout_admin.phtml'
+   ),
     'view_manager' => array( 
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',

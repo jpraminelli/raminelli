@@ -13,10 +13,19 @@ function pe($texto){
     print_r($texto);
     die;
 }
+if(!defined('APP_NAME')){
+   define('APP_NAME', realpath('.').'raminelli'); 
+}
 
 if(!defined('WWWROOT')){
    define('WWWROOT', '/raminelli/public/'); 
 }
+
+if(!defined('VAR_WWW')){
+   define('VAR_WWW', realpath('.').'/public'); 
+}
+
+
 
 
 // Run the application!

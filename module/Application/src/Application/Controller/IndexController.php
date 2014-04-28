@@ -23,5 +23,24 @@ class IndexController extends ActionController {
             'posts' => $paginator
         ));
     }
+    public function detalheAction() {
+
+        $id_route = $this->params()->fromRoute('id', 0);
+        $partes = explode('-', $id_route);
+        $id = (int) end($partes);
+        $post = $this->getTable('Application\Model\Post')->select(array('id' => $id));
+        $row = $post->current();
+       
+       
+       if($row === false){ 
+          return $this->redirect()->toRoute('home');
+          
+       }
+        
+
+        return new ViewModel(array(
+            'post' => ($row) ? $row->toArray() : array(),
+        ));
+    }
 }
     

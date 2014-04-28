@@ -25,6 +25,17 @@ return array(
                     ),
                 ),
             ),
+            'detalhe' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/detalhe[/:id]',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'detalhe',
+                        'module'     => 'Application',
+                    ),
+                ),
+            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(

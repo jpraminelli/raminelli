@@ -13,8 +13,6 @@ class IndexController extends ActionController {
 
     public function saveAction() {
         
-        //editor de texto
-        
         $form = new PostForm();
         $id = (int) $this->params()->fromRoute('id', 0);
         $request = $this->getRequest();

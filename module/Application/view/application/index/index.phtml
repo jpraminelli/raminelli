@@ -2,13 +2,11 @@
     <?php foreach ($posts as $post) { ?>
         <div class="span8">
             <blockquote>
-                <h3><span class="zf-green" ><?php echo $post['title']; ?></span></h3>
+                <h3><a href="<?=WWWROOT?>detalhe/<?php echo urlencode($post['title']); ?>-<?php echo $post['id']; ?>"><span class="zf-green" ><?php echo $post['title']; ?></span></a></h3>
                 <small><?php echo $this->formatarData($post['post_date']); ?></small>
             </blockquote>
         </div>
-        <div class="span8">
-            <p> <span class="center"> <?php echo substr($post['description'], 0, 500); ?> [..] </span><a href="#" class="btn-link">mais</a></p>
-        </div>
+        
     <?php } ?>
 </div>
 

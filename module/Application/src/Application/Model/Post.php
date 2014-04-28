@@ -51,7 +51,7 @@ class Post extends Entity{
                 'required' => true,
                 'filters' => array(
                     array('name' => 'StringTrim'),
-                    array('name' => 'StripTags'),
+                   
                 ),
             )));
             
@@ -71,5 +71,7 @@ class Post extends Entity{
         
         return $this->inputFilter;
     }
+    
+   
 }
 

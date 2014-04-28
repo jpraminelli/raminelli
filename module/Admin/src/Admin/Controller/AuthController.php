@@ -57,7 +57,7 @@ class AuthController extends ActionController
         $service = $this->getService('Admin\Service\Auth');
         $auth = $service->authenticate($dados );
         
-        return $this->redirect()->toUrl(WWWROOT);
+        return $this->redirect()->toUrl(WWWROOT.'admin/');
     }
 
     /**

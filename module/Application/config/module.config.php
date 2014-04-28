@@ -28,7 +28,7 @@ return array(
             'detalhe' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/detalhe[/:id]',
+                    'route'    => '/detalhe[/:id][/:page]',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'detalhe',

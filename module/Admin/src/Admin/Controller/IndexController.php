@@ -12,8 +12,11 @@ use Zend\Paginator\Adapter\DbSelect as PaginatorDbSelectAdpter;
 class IndexController extends ActionController {
 
     public function saveAction() {
+        
+        //editor de texto
+        
         $form = new PostForm();
-
+        $id = (int) $this->params()->fromRoute('id', 0);
         $request = $this->getRequest();
         if ($request->isPost()) { 
             $post = new Post;
@@ -25,14 +28,20 @@ class IndexController extends ActionController {
                 $data['post_date'] = date('Y-m-d H:i:s');
                 $post->setData($data);
                 $saved = $this->getTable('Application\Model\Post')->save($post);
-                return $this->redirect()->toUrl(WWWROOT);
+                if($data['id'] > 0){ 
+                    $this->flashMessenger()->addMessage('Registro alterado com sucesso');
+                }
+                else{ 
+                    $this->flashMessenger()->addMessage('Registro incluido com sucesso'); 
+                }
+                return $this->redirect()->toUrl(WWWROOT.'admin');
             }
         }
-        $id = (int) $this->params()->fromRoute('id', 0);
+       
         if ($id > 0) {
             $post = $this->getTable('Application\Model\Post')->get($id);
             $form->bind($post);
-            $form->get('submit')->setAttribute('value', 'Edit');
+            $form->get('submit')->setAttribute('value', 'Editar');
         }
         return new ViewModel(
                 array('form' => $form)
@@ -45,7 +54,8 @@ class IndexController extends ActionController {
             throw new \Exception("Código obrigatório");
         }
         $this->getTable('Application\Model\Post')->delete($id);
-        return $this->redirect()->toUrl(WWWROOT);
+        $this->flashMessenger()->addMessage('Registro excluído com sucesso');
+        return $this->redirect()->toUrl(WWWROOT.'admin');
     }
     
     public function indexAction(){

@@ -10,7 +10,7 @@ class Post extends Form {
         parent::__construct('post');
 
         $this->setAttribute('method', 'post');
-        $this->setAttribute('action', WWWROOT.'admin/index/save');
+        $this->setAttribute('action', WWWROOT.'admin/index/index/save');
 
         $this->add(array(
                 'type' => 'Hidden',
@@ -25,6 +25,7 @@ class Post extends Form {
             'name' => 'title',
             'attributes' => array(
                 'type'  => 'text',
+                 'class' => 'span8',
             ),
             'options' => array(
                 'label' => 'Título',
@@ -34,7 +35,9 @@ class Post extends Form {
         $this->add(array(
             'name' => 'description',
             'attributes' => array(
-                'type' => 'textarea'
+                'type' => 'textarea',
+                'class' => 'span8',
+                'rows' => 5
             ),
             'options' => array(
                 'label' => 'Texto do post'

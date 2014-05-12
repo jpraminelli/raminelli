@@ -56,6 +56,7 @@ class IndexController extends ActionController {
                 $data = $form->getData();
 
                 unset($data['submit']);
+                unset($data['captcha']);
 
                 $data['data'] = date('Y-m-d H:i:s');
                 $contato->setData($data);

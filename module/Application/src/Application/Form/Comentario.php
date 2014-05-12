@@ -56,10 +56,9 @@ class Comentario extends Form {
             ),
         ));
 
-                                                 //pass captcha image options
         $captchaImage = new CaptchaImage(  array(
                 'font' => realpath('.') . '/public/fonts/code_bold.otf',
-                'dotNoiseLevel' => 40,
+                'dotNoiseLevel' => 30,
                 'lineNoiseLevel' => 2,
                 'wordlen' => 4,
                 'fsize' => 30
@@ -74,7 +73,7 @@ class Comentario extends Form {
             'type' => 'Zend\Form\Element\Captcha',
             'name' => 'captcha',
             'options' => array(
-                'label' => 'Código de verificação:',
+                'label' => 'Código de segurança:',
                 'captcha' => $captchaImage,
             ),
             'attributes' => array(

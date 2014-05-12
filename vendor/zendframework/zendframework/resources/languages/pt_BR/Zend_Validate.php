@@ -276,4 +276,7 @@ return array(
     // Zend_Validator_Uri
     "Invalid type given. String expected" => "O tipo especificado é inválido, o valor deve ser uma string",
     "The input does not appear to be a valid Uri" => "O valor de entrada não parece ser uma Uri válida",
+    
+    //captcha
+    "Captcha value is wrong" => "Código de segurança incorreto"
 );

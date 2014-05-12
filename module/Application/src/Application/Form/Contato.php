@@ -3,6 +3,7 @@
 namespace Application\Form;
 
 use Zend\Form\Form;
+use Zend\Captcha\Image as CaptchaImage;
 
 class Contato extends Form {
 
@@ -10,13 +11,13 @@ class Contato extends Form {
         parent::__construct('contato');
 
         $this->setAttribute('method', 'post');
-        $this->setAttribute('action', WWWROOT.'contato');
+        $this->setAttribute('action', WWWROOT . 'contato');
 
         $this->add(array(
             'name' => 'nome',
             'attributes' => array(
-                'type'  => 'text',
-                 'class' => 'span8',
+                'type' => 'text',
+                'class' => 'span8',
             ),
             'options' => array(
                 'label' => 'Seu nome:',
@@ -25,8 +26,8 @@ class Contato extends Form {
         $this->add(array(
             'name' => 'email',
             'attributes' => array(
-                'type'  => 'text',
-                 'class' => 'span8',
+                'type' => 'text',
+                'class' => 'span8',
             ),
             'options' => array(
                 'label' => 'Seu email:',
@@ -42,6 +43,31 @@ class Contato extends Form {
             ),
             'options' => array(
                 'label' => 'Texto:'
+            ),
+        ));
+
+        $captchaImage = new CaptchaImage(array(
+            'font' => realpath('.') . '/public/fonts/code_bold.otf',
+            'dotNoiseLevel' => 30,
+            'lineNoiseLevel' => 2,
+            'wordlen' => 4,
+            'fsize' => 30
+                )
+        );
+        $captchaImage->setImgDir(realpath('.') . '/public/captcha');
+        $captchaImage->setImgUrl(WWWROOT . 'captcha');
+
+
+        //add captcha element...
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Captcha',
+            'name' => 'captcha',
+            'options' => array(
+                'label' => 'Código de segurança:',
+                'captcha' => $captchaImage,
+            ),
+            'attributes' => array(
+                'class' => 'span2',
             ),
         ));
 

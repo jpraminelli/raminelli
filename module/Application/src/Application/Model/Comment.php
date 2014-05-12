@@ -25,13 +25,6 @@ class Comment extends Entity{
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
             
-            $inputFilter->add($factory->createInput(array(
-                'name' => 'id',
-                'required' => true,
-                'filters' => array(
-                    array('name' => 'Int'),
-                ),
-            )));
             
             $inputFilter->add($factory->createInput(array(
                 'name' => 'post_id',
@@ -79,22 +72,6 @@ class Comment extends Entity{
                 )),
             )));
            
-            $inputFilter->add($factory->createInput(array(
-                'name' => 'webpage',
-                'required' => true,
-                'filters' => array(
-                    array('name' => 'StringTrim'),
-                    array('name' => 'StripTags'),
-                ),
-                'validators' => array(array(
-                    'name' => 'StringLength',
-                    'options' => array(
-                        'encoding' => 'UTF-8',
-                        'min' => 1,
-                        'max' => 200,
-                    ),
-                )),
-            )));
             
             $inputFilter->add($factory->createInput(array(
                 'name' => 'comment_date',

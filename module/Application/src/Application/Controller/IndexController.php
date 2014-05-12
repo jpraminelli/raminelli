@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Form\Comentario;
 use Core\Controller\ActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
@@ -111,11 +112,50 @@ class IndexController extends ActionController {
         $paginator = new Paginator($paginatorAdapter);
         $paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
         $paginator->setItemCountPerPage(5);
+        
+        //form
+        $form = new Comentario($id);
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+
+            $comment = new \Application\Model\Comment();
+            $form->setInputFilter($comment->getInputFilter());
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+                
+                unset($data['submit']);
+                unset($data['captcha']);
+                $data['comment_date'] = date('Y-m-d H:i:s');
+                $comment->setData($data);
+               
+                $saved = $this->getTable('Application\Model\Comment')->save($comment);
+                if ($saved) { 
+                    $this->flashMessenger()->addMessage('Seu Comentário foi enviada com sucesso.');
+
+                    $headers = "MIME-Version: 1.1\r\n";
+                    $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+                    $headers .= "From: jpraminelli@gmail.com\r\n"; // remetente
+                    $headers .= "Return-Path: jpraminelli@gmail.com\r\n"; // return-path
+
+                    $corpo = "Formulário Comentário\r\n";
+                    $corpo .= "Nome: " . $data['name'] . "\r\n";
+                    $corpo .= "E-mail: " . $data['email'] . "\r\n";
+                    $corpo .= "Comentário:" . $data['description'] . "\r\n";
+
+                    mail("jpraminelli@gmail.com", "Novo comentário site", $corpo, $headers);
+                }
+                return $this->redirect()->toUrl(WWWROOT .'detalhe/' .$id_route);
+            }
+        }
 
         return new ViewModel(array(
             'post' => ($row) ? $row->toArray() : array(),
             'demaisPosts' => $paginator,
-            'linkAtual' => 'home'
+            'linkAtual' => 'home',
+            'form' => $form
         ));
     }
 

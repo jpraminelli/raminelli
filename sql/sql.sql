@@ -154,3 +154,17 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `valid`, `role`) VALU
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+--
+-- Estrutura da tabela `contato`
+--
+
+CREATE TABLE IF NOT EXISTS `contato` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `texto` text NOT NULL,
+  `data` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+

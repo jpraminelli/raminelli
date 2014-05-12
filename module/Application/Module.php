@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -11,37 +12,40 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 
-class Module
-{
-    public function onBootstrap($e)
-    {
+class Module {
+
+    public function onBootstrap($e) {
         $e->getApplication()->getServiceManager()->get('translator');
-        $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $translator = $e->getApplication()->getServiceManager()->get('MvcTranslator');
+        $translator->addTranslationFile(
+                'phpArray', 'vendor/zendframework/zendframework/resources/languages/pt_BR/Zend_Validate.php'
+        );
+
+        \Zend\Validator\AbstractValidator::setDefaultTranslator($translator);
     }
 
-    public function getConfig()
-    {
+    public function getConfig() {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
-    {
+    public function getAutoloaderConfig() {
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
-            
         );
     }
+
     public function getViewHelperConfig() {
         return array(
             'invokables' => array(
                 'formatarData' => new View\Helper\FormatarData
-                
             ),
         );
     }

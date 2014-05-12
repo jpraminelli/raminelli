@@ -8,6 +8,7 @@ use Application\Model\Post;
 use Application\Form\Post as PostForm;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\DbSelect as PaginatorDbSelectAdpter;
+use Zend\Db\Sql\Sql;
 
 class IndexController extends ActionController {
 
@@ -51,6 +52,16 @@ class IndexController extends ActionController {
         if ($id == 0) {
             throw new \Exception("Código obrigatório");
         }
+        //apagando comentários
+        $adapter = $this->getServiceLocator()->get('DbAdapter');
+        $sql = new Sql($adapter);
+        $select = $sql->delete()
+                ->from('comments')
+                ->where('post_id = '.(int)$id);
+        
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        
         $this->getTable('Application\Model\Post')->delete($id);
         $this->flashMessenger()->addMessage('Registro excluído com sucesso');
         return $this->redirect()->toUrl(WWWROOT.'admin');

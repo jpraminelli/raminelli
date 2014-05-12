@@ -14,6 +14,17 @@ return array(
                     ),
                 ),
             ),
+            'contato' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/contato',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'contato',
+                        'module'     => 'application',
+                    ),
+                ),
+            ),
             'admin/auth/index' => array(
                 'type' => 'Segment',
                 'options' => array(

@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\DbSelect as PaginatorDbSelectAdpter;
 use Zend\Db\Sql\Sql;
+use Application\Form\Contato;
 
 class IndexController extends ActionController {
 
@@ -21,7 +22,32 @@ class IndexController extends ActionController {
         $paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
 
         return new ViewModel(array(
-            'posts' => $paginator
+            'posts' => $paginator,
+            'linkAtual' => 'home'
+        ));
+    }
+    public function contatoAction() {
+
+        $adapter = $this->getServiceLocator()->get('DbAdapter');
+
+        $sql = new Sql($adapter);
+        $select = $sql->select()
+                ->from('posts')
+                ->order('post_date DESC');
+       
+        $paginatorAdapter = new PaginatorDbSelectAdpter($select, $sql);
+        $paginator = new Paginator($paginatorAdapter);
+        $paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
+        $paginator->setItemCountPerPage(5);
+        
+        //form
+        $form = new Contato;
+                
+        
+        return new ViewModel(array(
+            'demaisPosts' => $paginator,
+            'linkAtual' => 'contato',
+            'form' => $form
         ));
     }
 
@@ -54,6 +80,7 @@ class IndexController extends ActionController {
         return new ViewModel(array(
             'post' => ($row) ? $row->toArray() : array(),
             'demaisPosts' => $paginator,
+            'linkAtual' => 'home'
         ));
     }
 

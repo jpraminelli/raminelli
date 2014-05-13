@@ -17,7 +17,7 @@ class Contato extends Form {
             'name' => 'nome',
             'attributes' => array(
                 'type' => 'text',
-                'class' => 'span8',
+                'class' => 'span6',
             ),
             'options' => array(
                 'label' => 'Seu nome:',
@@ -27,7 +27,7 @@ class Contato extends Form {
             'name' => 'email',
             'attributes' => array(
                 'type' => 'text',
-                'class' => 'span8',
+                'class' => 'span6',
             ),
             'options' => array(
                 'label' => 'Seu email:',
@@ -38,7 +38,7 @@ class Contato extends Form {
             'name' => 'texto',
             'attributes' => array(
                 'type' => 'textarea',
-                'class' => 'span8',
+                'class' => 'span6',
                 'rows' => 5
             ),
             'options' => array(

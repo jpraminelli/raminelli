@@ -181,7 +181,7 @@ class IndexController extends ActionController {
                
                 $saved = $this->getTable('Application\Model\Comment')->save($comment);
                 if ($saved) { 
-                    $this->flashMessenger()->addMessage('Seu Comentário foi enviada com sucesso.');
+                    $this->flashMessenger()->addMessage('Seu Comentário foi enviado e está sob moderação.');
 
                     $headers = "MIME-Version: 1.1\r\n";
                     $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
@@ -198,12 +198,22 @@ class IndexController extends ActionController {
                 return $this->redirect()->toUrl(WWWROOT .'detalhe/' .$id_route);
             }
         }
+        
+        //consulta os comentarios ativos
+        $sql = new Sql($adapter);
+        $select = $sql->select()
+                ->from('comments')
+                ->where("post_id = {$id}")
+                ->where("status IS TRUE");
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();       
 
         return new ViewModel(array(
             'post' => ($row) ? $row->toArray() : array(),
             'demaisPosts' => $paginator,
             'linkAtual' => 'home',
-            'form' => $form
+            'form' => $form,
+            'comentarios' => $results
         ));
     }
 

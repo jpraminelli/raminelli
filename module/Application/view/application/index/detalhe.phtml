@@ -1,14 +1,33 @@
 <div class="row">
     <div class="span9">
-        
+        <?php 
+        //POST
+        ?>
         <h3><span class="zf-green" ><?php echo $post['title']; ?></span></h3>
         <blockquote>
             <small><?php echo $this->formatarData($post['post_date']); ?></small>
         </blockquote>
-        <?php echo $post['description']; ?>
-        <hr>
+        <?php echo $post['description']; 
+        
+        //COMENTARIOS
+        if(count($comentarios) > 0){ ?>
+            <br>
+            <br>
+            <h3><span class="zf-green" >Comentários</span></h3>
+            <?php foreach ($comentarios as $comentario) { ?>
+                <p><strong>Nome: </strong><?=$comentario['name'];?></p>
+                <p><strong>Enviado em: </strong><?=$this->formatarData($comentario['comment_date']);?></p>
+                <p><strong>Comentário: </strong><?=$comentario['description'];?></p>
+                <br>
+        <?php } 
+        } 
+        
+        //FORM DE COMENTÁRIO
+        ?> 
+        <br>
+        <br>
         <h3><span class="zf-green" >Deixe seu comentário</span></h3>
-         <?php
+        <?php
         echo $this->form()->openTag($form);
         echo $this->formCollection($form);
         echo $this->form()->closeTag();
@@ -23,8 +42,8 @@
             </blockquote>
 
         <?php } ?> 
-        
+
         <?php echo $this->paginationControl($demaisPosts, 'Sliding', 'partials/paginator/control.phtml'); ?>
-       
+
     </div>
 </div>

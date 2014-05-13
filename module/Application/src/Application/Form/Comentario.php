@@ -26,7 +26,7 @@ class Comentario extends Form {
             'name' => 'name',
             'attributes' => array(
                 'type'  => 'text',
-                 'class' => 'span8',
+                 'class' => 'span5',
             ),
             'options' => array(
                 'label' => 'Seu nome:',
@@ -37,7 +37,7 @@ class Comentario extends Form {
             'name' => 'email',
             'attributes' => array(
                 'type'  => 'text',
-                 'class' => 'span8',
+                 'class' => 'span5',
             ),
             'options' => array(
                 'label' => 'Seu email:',
@@ -48,7 +48,7 @@ class Comentario extends Form {
             'name' => 'description',
             'attributes' => array(
                 'type' => 'textarea',
-                'class' => 'span8',
+                'class' => 'span5',
                 'rows' => 5
             ),
             'options' => array(

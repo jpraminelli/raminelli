@@ -29,6 +29,7 @@ return array(
             'Admin\Controller\Index.index',
             'Application\Controller\Index.detalhe',
             'Application\Controller\Index.contato',
+            'Application\Controller\Index.busca',
         ),
         'privilege' => array(
             'visitante' => array(
@@ -39,6 +40,7 @@ return array(
                     'Admin\Controller\Auth.logout',
                     'Application\Controller\Index.detalhe',
                     'Application\Controller\Index.contato',
+                    'Application\Controller\Index.busca',
                 )
             ),
 //             'redator' => array(

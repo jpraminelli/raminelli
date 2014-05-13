@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="span9">
+        <h3><span class="zf-green" >Resultado da busca</span></h3>
+        <br>
+        <p>Sua busca pela palavra <strong><?=$buscou;?></strong> retornou <?php echo count($resultado);?> registros</p>
+        <br>
+        <br>
+
+        <?php foreach ($resultado as $post) { ?>
+            <blockquote>
+                <h3><a href="<?= WWWROOT ?>detalhe/<?php echo urlencode($post['title']); ?>-<?php echo $post['id']; ?>"><span class="zf-green" ><?php echo $post['title']; ?></span></a></h3>
+                <small><?php echo $this->formatarData($post['post_date']); ?></small>
+            </blockquote>
+        <?php } ?> 
+
+    </div>
+    <div class="span3">
+        <h2>Últimos posts</h2>
+        <?php foreach ($demaisPosts as $post) { ?>
+            <blockquote>
+                <h3><a href="<?= WWWROOT ?>detalhe/<?php echo urlencode($post['title']); ?>-<?php echo $post['id']; ?>"><span class="zf-green" ><?php echo $post['title']; ?></span></a></h3>
+                <small><?php echo $this->formatarData($post['post_date']); ?></small>
+            </blockquote>
+
+        <?php } ?> 
+
+        <?php echo $this->paginationControl($demaisPosts, 'Sliding', 'partials/paginator/control.phtml'); ?>
+
+    </div>
+</div>

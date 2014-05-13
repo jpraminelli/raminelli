@@ -1,8 +1,9 @@
-<?php 
-    $view = $this->viewModel()->getCurrent()->getChildren();
-    $variaveis = $view[0]->getVariables();
-    
-    echo $this->doctype(); ?>
+<?php
+$view = $this->viewModel()->getCurrent()->getChildren();
+$variaveis = $view[0]->getVariables();
+
+echo $this->doctype();
+?>
 
 <?php echo $this->doctype(); ?>
 
@@ -11,7 +12,7 @@
         <meta charset="utf-8">
         <?php echo $this->headTitle('ZF2 ' . $this->translate('Raminelli'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+<?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
         <!-- Le styles -->
         <?php
@@ -22,9 +23,10 @@
         ?>
 
         <!-- Scripts -->
-<?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-        ->prependFile($this->basePath() . '/js/jquery-1.7.2.min.js')
-?>
+        <?php
+        echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/js/jquery-1.7.2.min.js')
+        ?>
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -38,11 +40,17 @@
                     <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Raminelli') ?></a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="<?=($variaveis['linkAtual'] == 'home') ? 'active': '';?>">
-                                <a title="Postagens" href="<?php echo $this->basePath();?>">Postagens</a>
+                            <li class="<?= ($variaveis['linkAtual'] == 'home') ? 'active' : ''; ?>">
+                                <a title="Postagens" href="<?php echo $this->basePath(); ?>">Postagens</a>
                             </li>
-                            <li class="<?=($variaveis['linkAtual'] == 'contato') ? 'active': '';?>">
-                                <a title="Contato" href="<?php echo $this->basePath();?>/contato">Contato</a>
+                            <li class="<?= ($variaveis['linkAtual'] == 'contato') ? 'active' : ''; ?>">
+                                <a title="Contato" href="<?php echo $this->basePath(); ?>/contato">Contato</a>
+                            </li>
+                            <li style="padding-left: 600px;">
+                                <form class="navbar-search pull-left" action="<?php echo WWWROOT;?>busca" method="get" name="fbusca" id="fbusca">
+                                    <input id="busca" name="busca" type="text" class="search-query" placeholder="Buscar" value="<?= (isset($variaveis['buscou'])) ? $variaveis['buscou'] : '';?>">
+                                    <button style="padding: 5px; margin: 0" type="submit" class="btn btn-small btn-success">Ok</button>
+                                </form>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -50,13 +58,13 @@
             </div>
         </div>
         <div class="container">
-         <?php echo $this->flashMessenger()->render();?>
-         <?php echo $this->content; ?>
+<?php echo $this->flashMessenger()->render(); ?>
+<?php echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; <?php echo date('Y');?> by João Paulo Raminelli.</p>
+                <p>&copy; <?php echo date('Y'); ?> by João Paulo Raminelli.</p>
             </footer>
         </div> <!-- /container -->
-         <?php echo $this->inlineScript() ?>
+<?php echo $this->inlineScript() ?>
     </body>
 </html>

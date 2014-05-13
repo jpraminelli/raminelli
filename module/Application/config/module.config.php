@@ -25,6 +25,17 @@ return array(
                     ),
                 ),
             ),
+            'busca' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/busca[:busca]',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'busca',
+                        'module'     => 'application',
+                    ),
+                ),
+            ),
             'admin/auth/index' => array(
                 'type' => 'Segment',
                 'options' => array(

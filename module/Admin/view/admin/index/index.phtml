@@ -17,9 +17,9 @@
                 </tr>
                 <?php foreach ($posts as $post) { ?>
                     <tr>
-                        <td><?php echo $post['title']; ?></td>
+                        <td><?php echo $this->escapeHtml($post['title']); ?></td>
                         <td><?php echo $this->formatarData($post['post_date']); ?></td>
-                        <td><?php echo substr($post['description'], 0, 150); ?></td>
+                        <td><?php echo $this->escapeHtml(substr($post['description'], 0, 150)); ?></td>
                         <td style="width: 90px;">
                             <a href="<?php echo WWWROOT; ?>admin/index/index/save/id/<?php echo $post['id']; ?>" class="btn-link">Editar</a> |
                             <a href="<?php echo WWWROOT; ?>admin/index/index/delete/id/<?php echo $post['id']; ?>" class="btn-link">Excluir</a>

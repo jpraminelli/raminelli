@@ -87,6 +87,53 @@ class IndexController extends ActionController {
             'form' => $form
         ));
     }
+    
+    public function buscaAction() {
+        
+        $adapter = $this->getServiceLocator()->get('DbAdapter');
+
+        $sql = new Sql($adapter);
+        $select = $sql->select()
+                ->from('posts')
+                ->order('post_date DESC');
+        
+        $paginatorAdapter = new PaginatorDbSelectAdpter($select, $sql);
+        $paginator = new Paginator($paginatorAdapter);
+        $paginator->setCurrentPageNumber($this->params()->fromRoute('page'));
+        $paginator->setItemCountPerPage(5);
+        
+        $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+        $busca = strip_tags($busca);
+        $busca = trim($busca);
+        
+        //busca pela string informada
+        $sql2 = new Sql($adapter);
+        $select2 = $sql2->select()
+                ->from('posts')
+                ->where(array(
+                        new \Zend\Db\Sql\Predicate\PredicateSet(
+                        array(
+                                new \Zend\Db\Sql\Predicate\Like('description', '%'.$busca.'%'),
+                                new \Zend\Db\Sql\Predicate\Like('title', '%'.$busca.'%'),
+                            ),
+                            \Zend\Db\Sql\Predicate\PredicateSet::COMBINED_BY_OR
+                        ),
+
+        ));
+
+        $statement = $sql2->prepareStatementForSqlObject($select2);
+        $results = $statement->execute();      
+                
+
+        
+        return new ViewModel(array(
+            'demaisPosts' => $paginator,
+            'linkAtual' => '',
+            'buscou' => $busca, //texto que usuario buscou
+            'resultado' => $results
+           
+        ));
+    }
 
     public function detalheAction() {
 

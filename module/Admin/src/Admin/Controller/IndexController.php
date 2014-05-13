@@ -23,6 +23,10 @@ class IndexController extends ActionController {
             $form->setData($request->getPost());
             if ($form->isValid()) { 
                 $data = $form->getData();
+                
+                $data['description'] = html_entity_decode( $data['description']);
+                $data['title'] = html_entity_decode( $data['title']);
+                
                 unset($data['submit']);
                 $data['post_date'] = date('Y-m-d H:i:s');
                 $post->setData($data);
